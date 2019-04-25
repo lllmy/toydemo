@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<audio src="" controls autoplay id="player"></audio>
+</body>
+<script type="text/javascript">
+    var get_music = "http://192.168.12.11:9527/get_music/";
+    var ws = new WebSocket("ws://192.168.12.11:9528/ws/yinwangba");
+    ws.onmessage = function (data) {
+        console.log(data.data);
+        document.getElementById("player").src = get_music + data.data;
+    }
+</script>
+</html>

@@ -1,0 +1,39 @@
+{
+	"index.html": {
+		"resources": [
+			"main.html"
+		],
+		"refer": [
+			"main.html",
+			"login.html",
+			"user_info.html"
+		]
+	},
+	"main.html": {
+		"refer": [
+			"player.html"
+		]
+	},
+	"login.html": {
+		"refer": [
+			"reg.html",
+			"user_info.html"
+		]
+	},
+	"reg.html": {
+		"refer": [
+			"user_info.html"
+		]
+	},
+	"user_info.html": {
+		"refer": [
+			"toy_manager.html"
+		]
+	},
+	"toy_manager.html": {
+		"refer": [
+			"qr_test.html",
+			"QR_code.html"
+		]
+	}
+}

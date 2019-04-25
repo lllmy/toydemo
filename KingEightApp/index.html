@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="UTF-8" />
+		<title>Document</title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link rel="stylesheet" type="text/css" href="css/mui.css" />
+	</head>
+
+	<body>
+		<nav class="mui-bar mui-bar-tab">
+			<a class="mui-tab-item mui-active" id="index">
+				<span class="mui-icon mui-icon-home"></span>
+				<span class="mui-tab-label">首页</span>
+			</a>
+			<a class="mui-tab-item">
+				<span class="mui-icon mui-icon-phone"></span>
+				<span class="mui-tab-label">电话</span>
+			</a>
+			<a class="mui-tab-item">
+				<span class="mui-icon mui-icon-email"></span>
+				<span class="mui-tab-label">邮件</span>
+			</a>
+			<a class="mui-tab-item" id="user_info">
+				<span class="mui-icon mui-icon-gear"></span>
+				<span class="mui-tab-label">设置</span>
+			</a>
+		</nav>
+
+	</body>
+	<script src="js/mui.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		var ws = new WebSocket(window.ws_serv + "jinwangba");
+		ws.onclose = function() {
+			window.location.reload();
+		}
+		mui.init({
+			subpages: [{
+				url: "main.html", //子页面HTML地址，支持本地地址和网络地址
+				id: "main.html", //子页面标志
+				styles: {
+					top: "0px", //子页面顶部位置
+					bottom: "50px", //子页面底部位置
+				}
+			}]
+		})
+
+		document.addEventListener("send_music", function(data) {
+			ws.send(JSON.stringify(data.detail));
+		})
+
+		document.getElementById("user_info").addEventListener("tap", function() {
+			if(window.localStorage.getItem("user")) {
+				mui.openWindow({
+					url: "user_info.html",
+					id: "user_info.html",
+					styles: {
+						top: "0px",
+						bottom: "50px"
+					}
+				})
+			} else {
+				mui.openWindow({
+					url: "login.html",
+					id: "login.html",
+					styles: {
+						top: "0px",
+						bottom: "50px"
+					}
+				})
+			}
+
+		})
+
+		document.getElementById("index").addEventListener("tap", function() {
+			mui.openWindow({
+				url: "main.html",
+				id: "main.html",
+				styles: {
+					top: "0px",
+					bottom: "50px"
+				}
+			})
+		})
+	</script>
+
+</html>
